@@ -45,20 +45,7 @@ const BooksReadByYearByCategoryChart = () => {
 		maintainAspectRatio: false,
 		plugins: {
 			tooltip: {
-				itemSort: (a: any, b: any) => b.raw - a.raw,
 				filter: (tooltipItem: any) => tooltipItem.raw > 0,
-				callbacks: {
-					label: (context: any) => {
-						const label = context.dataset.label;
-						const value = context.raw;
-
-						const indexOfLabel = context.chart.tooltip.dataPoints.findIndex(
-							(e: any) => e.datasetIndex === context.datasetIndex
-						);
-
-						return `#${indexOfLabel + 1} – ${label}: ${value}`;
-					},
-				},
 				titleFont: {
 					weight: '400',
 				},
