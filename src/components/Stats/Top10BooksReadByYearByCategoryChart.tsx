@@ -71,11 +71,28 @@ const Top10BooksReadByYearByCategoryChart = () => {
 	ChartJS.defaults.font.family = cssVar('--font-main');
 
 	const options = {
+		interaction: {
+			mode: 'index',
+		},
 		responsive: true,
 		indexAxis: windowWidth >= 992 ? ('y' as const) : ('x' as const),
 		maintainAspectRatio: false,
 		plugins: {
 			tooltip: {
+				itemSort: (a: any, b: any) => b.raw - a.raw,
+				filter: (tooltipItem: any) => tooltipItem.raw > 0,
+				callbacks: {
+					label: (context: any) => {
+						const label = context.dataset.label;
+						const value = context.raw;
+
+						const indexOfLabel = context.chart.tooltip.dataPoints.findIndex(
+							(e: any) => e.datasetIndex === context.datasetIndex
+						);
+
+						return `#${indexOfLabel + 1} – ${label}: ${value}`;
+					},
+				},
 				titleFont: {
 					weight: '400',
 				},
@@ -192,6 +209,7 @@ const Top10BooksReadByYearByCategoryChart = () => {
 
 	return (
 		<div className="chart-container read-books-by-year-by-category">
+			{/* @ts-ignore */}
 			<Bar options={options} data={data as any} plugins={plugins} />
 		</div>
 	);
