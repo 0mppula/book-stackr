@@ -84,7 +84,7 @@
 
 .table-book-category:active,
 footer a:active {
-	text-decoration: underline dashed var(--primary);
+	text-decoration: underline dashed var(--light) !important;
 }
 
 .empty-row {

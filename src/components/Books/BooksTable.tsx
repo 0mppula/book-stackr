@@ -51,7 +51,7 @@ const BooksTable: FC = () => {
 						style={{
 							display: 'flex',
 							flexWrap: 'wrap',
-							gap: '4px',
+							gap: '6px',
 							alignItems: 'center',
 							height: '100%',
 							width: '100%',
@@ -73,6 +73,7 @@ const BooksTable: FC = () => {
 										}`,
 										padding: '0 4px',
 										borderRadius: '4px',
+										textDecoration: 'underline dashed transparent',
 									}}
 									className="table-book-category"
 									href={`https://www.goodreads.com/genres/${category.replaceAll(
@@ -82,8 +83,6 @@ const BooksTable: FC = () => {
 									target="_blank"
 								>
 									{category}
-									{/* Ensure no trailing comma. */}
-									{i === categories?.length - 1 ? '' : ', '}
 								</a>
 							</Fragment>
 						))}
