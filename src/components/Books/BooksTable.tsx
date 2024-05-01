@@ -11,6 +11,7 @@ import {
 } from 'react-icons/hi2';
 
 import { RootState } from '../../app/store';
+import { bookCategories } from '../../assets/data/bookSelectValues';
 import { selectBooksLoadingState, selectQueryFilteredBooks } from '../../features/books/selectors';
 import EditBookModal from '../Modals/EditBookModal';
 
@@ -45,24 +46,49 @@ const BooksTable: FC = () => {
 			{
 				Header: 'Category',
 				accessor: 'category',
-				Cell: ({ cell: { value: categories } }: { cell: any }) =>
-					categories.map((category: string, i: number) => (
-						<Fragment key={`category-${category}`}>
-							<a
-								className="table-book-category"
-								href={`https://www.goodreads.com/genres/${category.replaceAll(
-									' ',
-									'-'
-								)}`}
-								target="_blank"
-							>
-								{category}
-							</a>
-
-							{/* Ensure no trailing comma. */}
-							{i === categories?.length - 1 ? '' : ', '}
-						</Fragment>
-					)),
+				Cell: ({ cell: { value: categories } }: { cell: any }) => (
+					<div
+						style={{
+							display: 'flex',
+							flexWrap: 'wrap',
+							gap: '4px',
+							alignItems: 'center',
+							height: '100%',
+							width: '100%',
+						}}
+					>
+						{categories.map((category: string, i: number) => (
+							<Fragment key={`category-${category}`}>
+								<a
+									style={{
+										backgroundColor: `${
+											bookCategories.find(
+												(bookCategory) => bookCategory.value === category
+											)?.color || '#fff'
+										}26`,
+										border: `1px solid ${
+											bookCategories.find(
+												(bookCategory) => bookCategory.value === category
+											)?.color || '#fff'
+										}`,
+										padding: '0 4px',
+										borderRadius: '4px',
+									}}
+									className="table-book-category"
+									href={`https://www.goodreads.com/genres/${category.replaceAll(
+										' ',
+										'-'
+									)}`}
+									target="_blank"
+								>
+									{category}
+									{/* Ensure no trailing comma. */}
+									{i === categories?.length - 1 ? '' : ', '}
+								</a>
+							</Fragment>
+						))}
+					</div>
+				),
 			},
 			{ Header: 'Medium', accessor: 'readingMedium' },
 			{ Header: 'Year', accessor: 'yearRead' },
