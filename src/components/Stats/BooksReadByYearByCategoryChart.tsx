@@ -37,9 +37,6 @@ const BooksReadByYearByCategoryChart = () => {
 	ChartJS.defaults.font.family = cssVar('--font-main');
 
 	const options = {
-		interaction: {
-			mode: 'index',
-		},
 		responsive: true,
 		indexAxis: windowWidth >= 992 ? ('y' as const) : ('x' as const),
 		maintainAspectRatio: false,

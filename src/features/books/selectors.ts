@@ -1,7 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { selectItemType } from '../../components/FormComponents/FormTypes';
+import { bookCategories } from '../../assets/data/bookSelectValues';
 import { bookType } from '../../assets/data/books';
+import { selectItemType } from '../../components/FormComponents/FormTypes';
 
 export interface tableRowDataType {
 	[key: string]: string | number;
@@ -328,49 +329,6 @@ export const selectReadBooksByYearByCategory = createSelector([booksSelector], (
 	let categories: Set<string> = new Set<string>();
 	let categoryDatasets: { label: string; data: number[]; backgroundColor: string }[] = [];
 
-	const barColors = [
-		'#3ca22d',
-		'#668efa',
-		'#697ed0',
-		'#2fb66c',
-		'#63c638',
-		'#7085f1',
-		'#f488ec',
-		'#60be97',
-		'#3bd4e4',
-		'#35c7c8',
-		'#cdf988',
-		'#28bf25',
-		'#33d5e3',
-		'#868f9d',
-		'#76879a',
-		'#b77bc7',
-		'#d275a7',
-		'#d6f6ce',
-		'#31b636',
-		'#f6cce9',
-		'#fac6da',
-		'#2eec1a',
-		'#f0e731',
-		'#affbfc',
-		'#f0ce75',
-		'#ead0b2',
-		'#52b811',
-		'#b1fc9c',
-		'#95e912',
-		'#bdceee',
-		'#129831',
-		'#b2afd8',
-		'#958c58',
-		'#95bfea',
-		'#83903e',
-		'#e9b5d6',
-		'#2fc176',
-		'#d7d643',
-		'#f68039',
-		'#d69b31',
-	];
-
 	const uniqueYears = readBooks
 		.filter((book, i) => readBooks.findIndex((book2) => book2.yearRead === book.yearRead) === i)
 		.map((book) => book.yearRead)
@@ -410,8 +368,11 @@ export const selectReadBooksByYearByCategory = createSelector([booksSelector], (
 
 					return booksReadByCategory.length;
 				}),
-				backgroundColor: barColors[i],
+				backgroundColor: (bookCategories.find((bc) => bc.label === category)?.color ||
+					'#fff') as string,
 			});
+
+			console.log(category, bookCategories.find((bc) => bc.label === category)?.color);
 		});
 
 	return { years: uniqueYears, datasets: categoryDatasets };

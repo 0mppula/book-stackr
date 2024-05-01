@@ -3,13 +3,14 @@ import ReactSelect from 'react-select';
 import { customTheme, customStyles } from '../../helpers/reactSelectStyles';
 
 import { selectItemType } from './FormTypes';
+import { bookCategories } from '../../assets/data/bookSelectValues';
 
 interface SelectInputProps {
 	label?: string;
 	value: selectItemType[] | selectItemType | null;
 	name: string;
 	handleChange: Function;
-	options: selectItemType[];
+	options: selectItemType[] | typeof bookCategories;
 	isMulti?: boolean;
 	placeholder: string;
 	required?: boolean;
