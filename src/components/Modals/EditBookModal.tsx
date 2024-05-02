@@ -87,6 +87,19 @@ const EditBookModal: FC<EditBookModalProps> = ({
 
 	const { author, title, category, readingMedium, yearRead, status } = formData;
 
+	if (category && category.value) {
+		category.value = category.value.map((val) => {
+			const color = bookCategories.find(
+				(cat) => cat.value.toLowerCase() === val.value.toLowerCase()
+			)?.color;
+
+			return {
+				...val,
+				...(color && { color }),
+			};
+		});
+	}
+
 	const handleSubmit = () => {
 		let error = validateForm();
 
