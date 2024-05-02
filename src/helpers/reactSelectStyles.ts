@@ -17,7 +17,7 @@ export const customStyles = {
 				? {
 						backgroundColor: `${data.color}26 !important`,
 						backgroundImage: 'none !important',
-						border: `1px solid ${data.color}BF !important`,
+						border: `1px solid ${data.color}73 !important`,
 				  }
 				: {}),
 		};

@@ -70,7 +70,7 @@ const BooksTable: FC = () => {
 											bookCategories.find(
 												(bookCategory) => bookCategory.value === category
 											)?.color || '#fff'
-										}BF`,
+										}73`,
 										padding: '0 4px',
 										borderRadius: '4px',
 										textDecoration: 'underline dashed transparent',
