@@ -371,8 +371,6 @@ export const selectReadBooksByYearByCategory = createSelector([booksSelector], (
 				backgroundColor: (bookCategories.find((bc) => bc.label === category)?.color ||
 					'#fff') as string,
 			});
-
-			console.log(category, bookCategories.find((bc) => bc.label === category)?.color);
 		});
 
 	return { years: uniqueYears, datasets: categoryDatasets };

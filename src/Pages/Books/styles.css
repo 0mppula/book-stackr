@@ -82,6 +82,10 @@
 	display: inline-block;
 }
 
+.table-book-category:hover {
+	text-decoration: underline var(--light) !important;
+}
+
 .table-book-category:active,
 footer a:active {
 	text-decoration: underline dashed var(--light) !important;
