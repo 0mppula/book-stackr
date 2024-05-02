@@ -4,6 +4,7 @@ import { CSVLink } from 'react-csv';
 import { FaBook, FaCircleNotch, FaFileDownload, FaFilter, FaPlus } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
+import { bookCategories } from '../../assets/data/bookSelectValues';
 import { bookStatusType } from '../../assets/data/books';
 import {
 	selectBookFilters,
@@ -86,7 +87,20 @@ const BooksTableTools: FC = () => {
 		}
 
 		if (field === 'categoryFilter') {
-			dispatch(setCategoryFilters(e));
+			// In addition to setting the category filters, assign a color to each category.
+			dispatch(
+				setCategoryFilters(
+					e.map((option) => {
+						return {
+							label: option.label,
+							value: option.value,
+							color: bookCategories.find(
+								(category) => category.value === option.value
+							)?.color,
+						};
+					})
+				)
+			);
 		}
 
 		if (field === 'yearReadFilter') {

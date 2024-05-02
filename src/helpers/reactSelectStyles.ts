@@ -8,6 +8,20 @@ export const customStyles = {
 			? `2px solid ${cssVar('--light')}`
 			: `1px solid ${cssVar('--light-alt')}`,
 	}),
+
+	// Style the selected value if it has a color property.
+	multiValue: (styles: any, { data }: any) => {
+		return {
+			...styles,
+			...(data?.color
+				? {
+						backgroundColor: `${data.color}26 !important`,
+						backgroundImage: 'none !important',
+						border: `1px solid ${data.color}BF !important`,
+				  }
+				: {}),
+		};
+	},
 };
 
 export const customTheme = (theme: any) => ({
