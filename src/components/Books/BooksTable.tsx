@@ -66,7 +66,7 @@ const BooksTable: FC = () => {
 												(bookCategory) => bookCategory.value === category
 											)?.color || '#fff'
 										}26`,
-										border: `1px solid ${
+										border: `2px solid ${
 											bookCategories.find(
 												(bookCategory) => bookCategory.value === category
 											)?.color || '#fff'
