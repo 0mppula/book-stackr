@@ -51,7 +51,7 @@ const BooksTable: FC = () => {
 						style={{
 							display: 'flex',
 							flexWrap: 'wrap',
-							gap: '6px',
+							gap: '8px',
 							alignItems: 'center',
 							height: '100%',
 							width: '100%',
@@ -71,7 +71,7 @@ const BooksTable: FC = () => {
 												(bookCategory) => bookCategory.value === category
 											)?.color || '#fff'
 										}73`,
-										padding: '0 4px',
+										padding: '2px 6px',
 										borderRadius: '4px',
 										textDecoration: 'underline dashed transparent',
 									}}
