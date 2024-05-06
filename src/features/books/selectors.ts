@@ -252,19 +252,23 @@ export const selectReadBooksChartTableData = createSelector([booksSelector], (bo
 	let todayTime = new Date().getTime();
 	let currentYear = new Date().getFullYear();
 	let startOfYearTime = new Date(currentYear, 0, 1).getTime();
-	let daysElapsed = +Math.floor((todayTime - startOfYearTime) / (24 * 60 * 60 * 1000));
+	let daysElapsed = +Math.ceil((todayTime - startOfYearTime) / (24 * 60 * 60 * 1000));
 
 	// Store total books read per week by year and the percent of each book medium read by year.
 	uniqueYears.forEach((uniqueYear, i) => {
 		let weeksElapsedOnYear = 52;
+		const totalBooksRead =
+			audioBooksReadByYear[i] + eBooksReadByYear[i] + paperBooksReadByYear[i];
 
 		if (uniqueYear === currentYear) {
-			weeksElapsedOnYear = Math.ceil(daysElapsed / 7);
+			// If the year is the current year, calculate the weeks elapsed so far. Each year has 52 weeks.
+			weeksElapsedOnYear = Math.ceil(daysElapsed / 7) <= 52 ? Math.ceil(daysElapsed / 7) : 52;
 		}
 
 		booksPerWeekByYear[i] = (
-			(audioBooksReadByYear[i] + eBooksReadByYear[i] + paperBooksReadByYear[i]) /
-			weeksElapsedOnYear
+			isFinite(totalBooksRead / weeksElapsedOnYear)
+				? totalBooksRead / weeksElapsedOnYear
+				: totalBooksRead
 		).toFixed(2);
 
 		audioPercentByYear[i] = `${(
