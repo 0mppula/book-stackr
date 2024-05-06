@@ -17,7 +17,7 @@ const StatsHeader: FC = () => {
 
 	return (
 		<div className="stats-header-container no-padding">
-			<div className="stats-header-item books-read-by-category">
+			<div className="stats-header-item">
 				<h2>Books Read</h2>
 
 				<p className="total">{totalBooks}</p>
