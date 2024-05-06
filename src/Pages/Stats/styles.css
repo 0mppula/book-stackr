@@ -13,7 +13,6 @@
 	align-items: center;
 	color: var(--light);
 	text-align: center;
-	user-select: none;
 	background-color: var(--dark-alt);
 	border-radius: 6px;
 	padding: 1rem;
@@ -39,6 +38,10 @@
 	text-wrap: balance;
 }
 
+.books-read-by-category h2 {
+	font-weight: 600;
+}
+
 .recently-read-item hr {
 	/* margin: 0.5rem 0; */
 	width: min(75%, 125px);
@@ -62,13 +65,14 @@
 }
 
 .stats-header-container .total {
-	font-size: 38px;
-	line-height: 50px;
+	font-size: 46px;
+	line-height: 60px;
+	font-weight: 700;
 }
 
 .stats-header-container .total-percent {
-	font-size: 32px;
-	line-height: 36px;
+	font-size: 26px;
+	font-weight: 600;
 }
 
 .stats-charts-container {
