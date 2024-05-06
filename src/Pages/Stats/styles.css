@@ -33,6 +33,11 @@
 	gap: 0.75rem;
 }
 
+.recently-read-item h2 {
+	line-height: 32px;
+	margin-bottom: 0.5rem;
+}
+
 .stats-header-container h2 {
 	font-size: 26px;
 	text-wrap: balance;
