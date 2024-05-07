@@ -45,12 +45,12 @@ const BooksTableTools: FC = () => {
 		!defaultYearReadFilterIsSelected,
 		!defaultCategoryFilterIsSelected,
 		statusFilters.length < 3,
-		internalQuery !== '',
+		internalQuery.trim() !== '',
 	].some((condition) => condition);
 
 	useEffect(() => {
 		let bounce = setTimeout(() => {
-			dispatch(setQuery(internalQuery));
+			dispatch(setQuery(internalQuery.trim()));
 		}, 250);
 
 		return () => clearTimeout(bounce);
