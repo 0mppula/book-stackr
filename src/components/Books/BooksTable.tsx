@@ -1,4 +1,4 @@
-import { FC, Fragment, useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { FaPen } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { Column, usePagination, useSortBy, useTable } from 'react-table';
@@ -11,9 +11,9 @@ import {
 } from 'react-icons/hi2';
 
 import { RootState } from '../../app/store';
-import { bookCategories } from '../../assets/data/bookSelectValues';
 import { selectBooksLoadingState, selectQueryFilteredBooks } from '../../features/books/selectors';
 import EditBookModal from '../Modals/EditBookModal';
+import CategoryLink from '../shared/CategoryLink';
 
 interface ColumnType {
 	id: string;
@@ -57,30 +57,8 @@ const BooksTable: FC = () => {
 							width: '100%',
 						}}
 					>
-						{categories.map((category: string, i: number) => (
-							<Fragment key={`category-${category}`}>
-								<a
-									style={{
-										backgroundColor: `${
-											bookCategories.find(
-												(bookCategory) => bookCategory.value === category
-											)?.color || '#fff'
-										}26`,
-										border: '2px solid #ffffff26',
-										padding: '2px 6px',
-										borderRadius: '4px',
-										textDecoration: 'underline dashed transparent',
-									}}
-									className="table-book-category"
-									href={`https://www.goodreads.com/genres/${category.replaceAll(
-										' ',
-										'-'
-									)}`}
-									target="_blank"
-								>
-									{category}
-								</a>
-							</Fragment>
+						{categories.map((category: string) => (
+							<CategoryLink key={`category-${category}`} category={category} />
 						))}
 					</div>
 				),

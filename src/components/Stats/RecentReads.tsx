@@ -1,8 +1,8 @@
 import { formatDistance } from 'date-fns';
-import { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { selectRecentlyReadBooks } from '../../features/books/selectors';
+import CategoryLink from '../shared/CategoryLink';
 
 const RecentReads = () => {
 	const books = useSelector((state: RootState) => selectRecentlyReadBooks(state));
@@ -32,23 +32,19 @@ const RecentReads = () => {
 
 								<hr />
 
-								<div>
-									{book.category.map((category: string, i: number) => (
-										<Fragment key={`category-${category}`}>
-											<a
-												className="table-book-category"
-												href={`https://www.goodreads.com/genres/${category.replaceAll(
-													' ',
-													'-'
-												)}`}
-												target="_blank"
-											>
-												{category}
-											</a>
-
-											{/* Ensure no trailing comma. */}
-											{i === book.category.length - 1 ? '' : ', '}
-										</Fragment>
+								<div
+									style={{
+										display: 'flex',
+										flexWrap: 'wrap',
+										gap: '8px',
+										justifyContent: 'center',
+									}}
+								>
+									{book.category.map((category: string) => (
+										<CategoryLink
+											key={`category-${category}`}
+											category={category}
+										/>
 									))}
 								</div>
 							</div>
